@@ -11,15 +11,13 @@
 ### Pre-requisitos: ter NodeJS instalado
 
 ```Shell
-git clone https://merico341/trilha-react-ToDoList.git
+git clone https://github.com/merico341/trilha-react-ToDoList.git
 cd todolist
 npm install
 npm start
 ```
 
 ## Tecnologias usadas
-
-----
 
 ### Html: Estrutura do site
 
@@ -34,10 +32,6 @@ npm start
 ## para aprender react.js
 
 > acesse a [documentação react](https://react.dev/)
-
-## para aprender mais sobre esse tipo de projeto usando react
-
-> acesse [create-react-app](https://create-react-app.dev/)
 
 ## para aprender Tailwindcss
 

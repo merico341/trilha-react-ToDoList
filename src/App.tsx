@@ -55,6 +55,7 @@ export default function App() {
           <ButtonIcon icon={TrashIcon}/>
           <ButtonIcon icon={TrashIcon} variant={"secondary"}/>
           <ButtonIcon icon={TrashIcon} variant={"tertiary"}/>
+          <ButtonIcon icon={TrashIcon} loading/>
         </div>
 
         <div>

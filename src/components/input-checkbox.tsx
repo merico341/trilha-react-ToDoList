@@ -2,6 +2,7 @@ import type React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import Icon from "./icon";
 import CheckIcon from "../assets/icons/Check.svg?react";
+import Skeleton from "./skeleton";
 
 export const inputCheckBoxWrapperVariants = cva(`
     inline-flex items-center justify-center relative
@@ -10,12 +11,17 @@ export const inputCheckBoxWrapperVariants = cva(`
 
 export const inputCheckBoxVariants = cva(`
     appearance-none peer flex items-center justify-center cursor-pointer 
-    border-2 border-solid transition overflow-hidden border-green-base 
-    hover:border-green-dark hover:bg-green-dark/20 checked:border-green-base
-    checked:bg-green-base group-hover:checked:border-green-dark
-    group-hover:checked:bg-green-dark
+    transition overflow-hidden border-green-base 
 `, {
     variants: {
+        variant: {
+            none: "",
+            default: `
+                hover:border-green-dark hover:bg-green-dark/20 checked:border-green-base
+                checked:bg-green-base group-hover:checked:border-green-dark
+                group-hover:checked:bg-green-dark border-2 border-solid
+            `
+        },
         size: {
             md: "w-5 h-5 rounded-sm"
         },
@@ -24,6 +30,7 @@ export const inputCheckBoxVariants = cva(`
         },
     },
     defaultVariants: {
+        variant: "default",
         size: "md",
         disabled: false
     }
@@ -45,16 +52,24 @@ export const inputCheckBoxIconVariants = cva(`
 
 interface InputCheckBoxProps extends VariantProps<typeof inputCheckBoxVariants>, 
     Omit<React.ComponentProps<"input">, 'size' | 'disabled'> {
-    
+    loading?: boolean;
 }
 
 export default function InputCheckBox({
+    variant,
     size,
     disabled,
     className,
+    loading,
     ...props
 } : InputCheckBoxProps) {
+    if (loading) {
+        return (
+            <Skeleton className={inputCheckBoxVariants({variant: "none", size})} />
+        )
+    }
     return (
+
         <label className={inputCheckBoxWrapperVariants({className})}>
             <input 
                 type="checkbox"

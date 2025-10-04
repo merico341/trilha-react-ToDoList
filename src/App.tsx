@@ -62,8 +62,9 @@ export default function App() {
           <InputText />
         </div>
 
-        <div>
-          <InputCheckBox></InputCheckBox>
+        <div className="flex">
+          <InputCheckBox />
+          <InputCheckBox loading/>
         </div>
 
         <div>

@@ -42,9 +42,11 @@ export default function App() {
           <Icon svg={XIcon}/>
         </div>
 
-        <div>
+        <div className="flex gap-1">
           <Badge variant={'secondary'}>5</Badge>
           <Badge variant={'primary'}>2 de 5</Badge>
+
+          <Badge loading>loading</Badge>
         </div>
 
         <div><Button icon={PlusIcon}> nova tarefa</Button></div>

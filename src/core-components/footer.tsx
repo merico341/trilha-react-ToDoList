@@ -9,8 +9,6 @@ export default function Footer() {
                 <NavLink to="/" className="text-gray-300">
                     <Text>Tarefas</Text>
                 </NavLink>
-            </nav>
-            <nav className="flex items-center justify-center gap-4">
                 <NavLink to="/componentes" className="text-gray-300">
                     <Text>componentes</Text>
                 </NavLink>

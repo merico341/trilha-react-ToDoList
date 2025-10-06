@@ -20,7 +20,8 @@ export default function TaksItem({ task }: TaskItemProps) {
   const [isEditing, setIsEditing] = React.useState(
     task.state === TaskState.Creating
   );
-  const [taskTitle, setTaskTitle] = React.useState("");
+  const [taskTitle, setTaskTitle] = React.useState(task.title || "");
+  const {updateTask} = useTask();
 
   function hadleEditTask() {
     setIsEditing(true);
@@ -36,7 +37,7 @@ export default function TaksItem({ task }: TaskItemProps) {
 
   function handleSaveTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // funcão de atualizar task
+    updateTask(task.id, {title: taskTitle})
     setIsEditing(false);
   }
 
@@ -68,6 +69,7 @@ export default function TaksItem({ task }: TaskItemProps) {
       ) : (
         <form onSubmit={handleSaveTask} className="flex items-center gap-4">
           <InputText
+            value={taskTitle}
             className="flex-1"
             onChange={handleChangeTaskTitle}
             required

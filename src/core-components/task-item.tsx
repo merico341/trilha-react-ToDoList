@@ -21,13 +21,17 @@ export default function TaksItem({ task }: TaskItemProps) {
     task.state === TaskState.Creating
   );
   const [taskTitle, setTaskTitle] = React.useState(task.title || "");
-  const {updateTask, updateTaskStatus} = useTask();
+  const {updateTask, updateTaskStatus, delateTask} = useTask();
 
   function hadleEditTask() {
     setIsEditing(true);
   }
 
   function handleExitEditTask() {
+    if (task.state === TaskState.Creating) {
+      delateTask(task.id);
+    }
+
     setIsEditing(false);
   }
 
@@ -37,7 +41,7 @@ export default function TaksItem({ task }: TaskItemProps) {
 
   function handleSaveTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    updateTask(task.id, {title: taskTitle})
+    updateTask(task.id, {title: taskTitle});
     setIsEditing(false);
   }
 
@@ -45,6 +49,10 @@ export default function TaksItem({ task }: TaskItemProps) {
     const checked = e.target.checked;
 
     updateTaskStatus(task.id, checked);
+  }
+
+  function handleDeleteTask() {
+    delateTask(task.id);
   }
 
   return (
@@ -63,7 +71,7 @@ export default function TaksItem({ task }: TaskItemProps) {
             {task?.title}
           </Text>
           <div className="flex gap-1">
-            <ButtonIcon type="button" icon={TrashIcon} variant={"tertiary"} />
+            <ButtonIcon type="button" icon={TrashIcon} variant={"tertiary"}  onClick={handleDeleteTask}/>
             <ButtonIcon
               type="button"
               icon={PencilIcon}

@@ -29,9 +29,14 @@ export default function useTask() {
     setTasks(tasks.map((task) => task.id === id ? {...task, concluded} : task))
   }
 
+  function delateTask(id: string) {
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
+
   return {
     prepareTask,
     updateTask,
-    updateTaskStatus
+    updateTaskStatus,
+    delateTask
   };
 }
